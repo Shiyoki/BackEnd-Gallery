@@ -19,7 +19,7 @@ const postSchema = mongoose.Schema({
 });
 
 postSchema.methods.setImgUrl = function setImgUrl (filename){
-this.selectedFile = `${process.env.HOST}:${process.env.PORT}/public/${filename}`
+this.selectedFile = `https://shiyogallery-backend.herokuapp.com/public/${filename}`
 
 }
 
