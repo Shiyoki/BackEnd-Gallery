@@ -1,4 +1,6 @@
 import Information from '../models/postModel.js'
+
+
 //Get all post
 export const getPosts = async (req, res) =>{
     try{
@@ -12,13 +14,21 @@ export const getPosts = async (req, res) =>{
 
 //Create post
 export const createPost = async (req, res) =>{
+    
     const post = new Information({
         title: req.body.title,
         description: req.body.description,
         selectedFile: req.body.selectedFile,
         creator: req.body.creator,
         tags: req.body.tags
+        
     });
+
+    if(req.file){
+     const {filename} = req.file
+     post.setImgUrl(filename)
+    }
+
     try{
         const savedPost = await post.save()
         res.json(savedPost);
